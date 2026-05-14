@@ -1,9 +1,6 @@
-# Usa a imagem oficial do Nginx
-FROM nginx:alpine
-
-# Copia os arquivos do seu site para a pasta padrão do Nginx
-# (Considerando que seus arquivos estão na pasta atual)
-COPY . /usr/share/nginx/html
-
-# Expõe a porta 80 (padrão do Nginx)
-EXPOSE 80
+FROM node:alpine
+RUN npm install -g serve
+WORKDIR /app
+COPY . .
+EXPOSE 3001
+CMD ["serve", "-s", ".", "-l", "3001"]
